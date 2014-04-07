@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="inc/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="inc/jquery-ui.js" type="text/javascript"></script>
+        <script src="inc/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="inc/bootstrap-dialog.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <title>Radio Players</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body { 
+                background-repeat: no-repeat;
+                background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CCCCCC),color-stop(1, #FFFFFF));
+                background-image: -o-linear-gradient(bottom, #CCCCCC 0%, #FFFFFF 100%);
+                background-image: -moz-linear-gradient(bottom, #CCCCCC 0%, #FFFFFF 100%);
+                background-image: -webkit-linear-gradient(bottom, #CCCCCC 0%, #FFFFFF 100%);
+                background-image: -ms-linear-gradient(bottom, #CCCCCC 0%, #FFFFFF 100%);
+                background-image: linear-gradient(to bottom, #CCCCCC 0%, #FFFFFF 100%);
+            }
+
+            .navbox {
+                position: relative;
+                float: left;
+            }
+            div{
+                display: block;
+            }
+            ul.nav {
+                list-style: none;
+                display: block;
+                width: 100px;
+                position: relative;
+                padding: 60px 0 60px 0;
+                margin: 20px 33px 20px 30px;
+                background: url(shad2.png) no-repeat;
+                -webkit-background-size: 50% 100%;
+                background-size: 50% 100%;
+            }
+            ul.nav li a {
+                -webkit-transition: all 0.3s ease-out;
+                -moz-transition: all 0.3s ease-out;
+                transition: all 0.3s ease-out;
+            }
+            ul.nav li a {
+                -webkit-transition: all 0.3s ease-out;
+                -moz-transition: all 0.3s ease-out;
+                transition: all 0.3s ease-out;
+                background: #cbcbcb url(border.png) no-repeat;
+                color: #174867;
+                padding: 7px 15px 7px 15px;
+                -webkit-border-top-right-radius: 10px;
+                -webkit-border-bottom-right-radius: 10px;
+                -moz-border-top-right-radius: 10px;
+                -moz-border-bottom-right-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                width: 100px;
+                display: block;
+                text-decoration: none;
+                -webkit-box-shadow: 2px 2px 4px #888;
+                -moz-box-shadow: 2px 2px 4px #888;
+                box-shadow: 2px 2px 4px #888;
+            }
+            ul.nav li a:hover {
+                background: #ebebeb url(border.png) no-repeat;
+                color: #67a5cd;
+                padding: 7px 15px 7px 30px;
+            }
+
+            h4#ar{
+                background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0, #00E6FF),
+                    color-stop(0.36, #FFFFFF),
+                    color-stop(0.66, #FFFFFF),
+                    color-stop(1, #00FBFF)
+                    );
+                background-image: -o-linear-gradient(bottom, #00E6FF 0%, #FFFFFF 36%, #FFFFFF 66%, #00FBFF 100%);
+                background-image: -moz-linear-gradient(bottom, #00E6FF 0%, #FFFFFF 36%, #FFFFFF 66%, #00FBFF 100%);
+                background-image: -webkit-linear-gradient(bottom, #00E6FF 0%, #FFFFFF 36%, #FFFFFF 66%, #00FBFF 100%);
+                background-image: -ms-linear-gradient(bottom, #00E6FF 0%, #FFFFFF 36%, #FFFFFF 66%, #00FBFF 100%);
+                background-image: linear-gradient(to bottom, #00E6FF 0%, #FFFFFF 36%, #FFFFFF 66%, #00FBFF 100%);
+            }
+            h4#br{
+                background: #a7ff05; /* Old browsers */
+                background: -moz-radial-gradient(center, ellipse cover, #a7ff05 0%, #ffff54 31%, #6ee500 100%); /* FF3.6+ */
+                background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#a7ff05), color-stop(31%,#ffff54), color-stop(100%,#6ee500)); /* Chrome,Safari4+ */
+                background: -webkit-radial-gradient(center, ellipse cover, #a7ff05 0%,#ffff54 31%,#6ee500 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-radial-gradient(center, ellipse cover, #a7ff05 0%,#ffff54 31%,#6ee500 100%); /* Opera 12+ */
+                background: -ms-radial-gradient(center, ellipse cover, #a7ff05 0%,#ffff54 31%,#6ee500 100%); /* IE10+ */
+                background: radial-gradient(ellipse at center, #a7ff05 0%,#ffff54 31%,#6ee500 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7ff05', endColorstr='#6ee500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            }
+            h4#ec{
+                background: #fff600; /* Old browsers */
+                background: -moz-linear-gradient(top, #fff600 0%, #fff600 36%, #0033ff 43%, #0033ff 66%, #ff0004 73%, #ff0004 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff600), color-stop(36%,#fff600), color-stop(43%,#0033ff), color-stop(66%,#0033ff), color-stop(73%,#ff0004), color-stop(100%,#ff0004)); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, #fff600 0%,#fff600 36%,#0033ff 43%,#0033ff 66%,#ff0004 73%,#ff0004 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, #fff600 0%,#fff600 36%,#0033ff 43%,#0033ff 66%,#ff0004 73%,#ff0004 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top, #fff600 0%,#fff600 36%,#0033ff 43%,#0033ff 66%,#ff0004 73%,#ff0004 100%); /* IE10+ */
+                background: linear-gradient(to bottom, #fff600 0%,#fff600 36%,#0033ff 43%,#0033ff 66%,#ff0004 73%,#ff0004 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff600', endColorstr='#ff0004',GradientType=0 ); /* IE6-9 */
+                color: white;
+            }
+            h4#ur{
+                background: rgb(0,76,255); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(0,76,255,1) 0%, rgba(255,255,255,1) 9%, rgba(0,93,255,1) 18%, rgba(255,255,255,1) 29%, rgba(0,67,255,1) 44%, rgba(255,255,255,1) 57%, rgba(0,51,255,1) 71%, rgba(255,255,255,1) 84%, rgba(0,76,255,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,76,255,1)), color-stop(9%,rgba(255,255,255,1)), color-stop(18%,rgba(0,93,255,1)), color-stop(29%,rgba(255,255,255,1)), color-stop(44%,rgba(0,67,255,1)), color-stop(57%,rgba(255,255,255,1)), color-stop(71%,rgba(0,51,255,1)), color-stop(84%,rgba(255,255,255,1)), color-stop(100%,rgba(0,76,255,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, rgba(0,76,255,1) 0%,rgba(255,255,255,1) 9%,rgba(0,93,255,1) 18%,rgba(255,255,255,1) 29%,rgba(0,67,255,1) 44%,rgba(255,255,255,1) 57%,rgba(0,51,255,1) 71%,rgba(255,255,255,1) 84%,rgba(0,76,255,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, rgba(0,76,255,1) 0%,rgba(255,255,255,1) 9%,rgba(0,93,255,1) 18%,rgba(255,255,255,1) 29%,rgba(0,67,255,1) 44%,rgba(255,255,255,1) 57%,rgba(0,51,255,1) 71%,rgba(255,255,255,1) 84%,rgba(0,76,255,1) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top, rgba(0,76,255,1) 0%,rgba(255,255,255,1) 9%,rgba(0,93,255,1) 18%,rgba(255,255,255,1) 29%,rgba(0,67,255,1) 44%,rgba(255,255,255,1) 57%,rgba(0,51,255,1) 71%,rgba(255,255,255,1) 84%,rgba(0,76,255,1) 100%); /* IE10+ */
+                background: linear-gradient(to bottom, rgba(0,76,255,1) 0%,rgba(255,255,255,1) 9%,rgba(0,93,255,1) 18%,rgba(255,255,255,1) 29%,rgba(0,67,255,1) 44%,rgba(255,255,255,1) 57%,rgba(0,51,255,1) 71%,rgba(255,255,255,1) 84%,rgba(0,76,255,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004cff', endColorstr='#004cff',GradientType=0 ); /* IE6-9 */
+                color: white;
+            }
+            h4#mx{
+                background: rgb(0,255,8); /* Old browsers */
+                background: -moz-linear-gradient(left, rgba(0,255,8,1) 0%, rgba(86,255,30,1) 16%, rgba(255,255,255,1) 37%, rgba(255,255,255,1) 64%, rgba(255,2,6,1) 85%, rgba(255,0,4,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,255,8,1)), color-stop(16%,rgba(86,255,30,1)), color-stop(37%,rgba(255,255,255,1)), color-stop(64%,rgba(255,255,255,1)), color-stop(85%,rgba(255,2,6,1)), color-stop(100%,rgba(255,0,4,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(left, rgba(0,255,8,1) 0%,rgba(86,255,30,1) 16%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 64%,rgba(255,2,6,1) 85%,rgba(255,0,4,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(left, rgba(0,255,8,1) 0%,rgba(86,255,30,1) 16%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 64%,rgba(255,2,6,1) 85%,rgba(255,0,4,1) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(left, rgba(0,255,8,1) 0%,rgba(86,255,30,1) 16%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 64%,rgba(255,2,6,1) 85%,rgba(255,0,4,1) 100%); /* IE10+ */
+                background: linear-gradient(to right, rgba(0,255,8,1) 0%,rgba(86,255,30,1) 16%,rgba(255,255,255,1) 37%,rgba(255,255,255,1) 64%,rgba(255,2,6,1) 85%,rgba(255,0,4,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ff08', endColorstr='#ff0004',GradientType=1 ); /* IE6-9 */
+            }
+            h4{
+                -webkit-transition: all 0.3s ease-out;
+                -moz-transition: all 0.3s ease-out;
+                transition: all 0.3s ease-out;
+                margin-left: 12px;
+                /*background-color: #67a5cd;*/
+                width: 100px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                text-align: center;
+
+            }
+            h4:hover {
+                color: #67a5cd;
+                padding: 0px 5px 0px 5px;
+                margin-left: 8px;
+                -webkit-box-shadow: 2px 2px 4px #888;
+                -moz-box-shadow: 2px 2px 4px #888;
+                box-shadow: 2px 2px 4px #888;
+            }
+
+        </style>
+        <script type="text/javascript/">
+
+
+        </script>
+    </head>
+    <body>
+
+        <div class="banner"></div>
+        <div class="navbox drag"  >
+            <ul class="nav">
+                <li><h4 id="ar">Argentina</h4></li>
+                <li><a href="//google.com">Web</a></li>
+                <li><a href="//google.com">Widget</a></li>
+                <li><a href="//google.com" >iPad</a></li>
+                <li><a href="//google.com">iPhone</a></li>
+            </ul>
+        </div>
+
+        <div class="navbox drag">
+            <ul class="nav">
+                <li><h4 id="br">Brasil</h4></li>
+                <li><a href="//google.com">Web</a></li>
+                <li><a href="//google.com">Widget</a></li>
+                <li><a href="//google.com" >iPad</a></li>
+                <li><a href="//google.com">iPhone</a></li>
+            </ul>
+        </div>
+        <div class="navbox drag">
+            <ul class="nav">
+                <li><h4 id="ec">Ecuador</h4></li>
+                <li><a href="//google.com">Web</a></li>
+                <li><a href="//google.com">Widget</a></li>
+                <li><a href="//google.com" >iPad</a></li>
+                <li><a href="//google.com">iPhone</a></li>
+            </ul>
+        </div>
+        <div class="navbox drag">
+            <ul class="nav">
+                <li><h4 id="ur">Uruguay</h4></li>
+                <li><a href="//google.com">Web</a></li>
+                <li><a href="//google.com">Widget</a></li>
+                <li><a href="//google.com" >iPad</a></li>
+                <li><a href="//google.com">iPhone</a></li>
+            </ul>
+        </div>
+      
+
+
+
+        <script type="text/javascript"> 
+           
+            var $textAndPic = $('<div id="test"></div>');
+            //            $textAndPic.append('Selecciona <br/> tu ciudad  <br/>');
+            //            $textAndPic.append(' <br/>');
+            $textAndPic.append('<a href="#" onclick=mxcity("DF") class="ciudad " id="df">DF</a><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="col">Colima</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="maz">Mazatl&aacute;n</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="her">Hermosillo</button><br />');
+            $textAndPic.append('<a href="#" onclick=mxcity("aca"); class="ciudad" id="aca">Acapulco</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="pva">Puerto&puncsp;Vallarta</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="leo">Le&oacute;n</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="mor">Morelia</button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="cul">Culiac&aacute;n </button><br />');
+            $textAndPic.append('<a href="//google.com" class="ciudad inactive" id="pue">Puebla</button><br />');
+            var dialog = new BootstrapDialog({
+                title: 'Selecciona ciudad',
+                message: $textAndPic
+            });
+            dialog.realize();
+            dialog.getModalHeader().hide();
+            //            dialog.getModalBody().hide();
+            dialog.getModalBody().css('background-color', '#EEEEEE');
+            dialog.getModalBody().css('color', '#fff');
+            dialog.getModalDialog().css('width', '150px');
+            dialog.getModalDialog().css('float', 'right');
+            dialog.getModalDialog().css('right', '30px');
+            dialog.getModalDialog().css('text-align', 'left');        
+            dialog.getModalFooter().hide();
+            
+            $('#mx').click(function(){
+                dialog.open();
+            }); 
+            
+            function mxcity(ciudad) {
+                
+                switch(ciudad)
+                {
+                    case "DF" :
+                        $("#mx").html("México DF");
+                        $("#mxweb").prop("href", "//google.com");
+                        $("#mxwidget").prop("href", "//google.com");
+                        $("#mxipad").prop("href", "//google.com");
+                        $("#mxiphone").prop("href", "//google.com");
+                        break;
+                    case "aca":
+                        $("#mxweb").prop("href", "//google.com");
+                        $("#mxwidget").prop("href", "//google.com");
+                        $("#mxipad").prop("href", "//google.com");
+                        $("#mxiphone").prop("href", "//google.com");
+                        $("#mx").html("México Acapulco");
+                        break;
+                }   
+                    
+                    
+                dialog.close();
+            }
+
+        </script>
+
+        <style type="text/css">
+            #selectorCiudad{
+                float: right;
+                margin-right:50px;
+            }
+            #ciudad{
+                width: 100px;
+            }
+            .inactive {
+                pointer-events: none;
+                cursor: default;
+                color: #999999;
+            }
+            ul{
+                left: 0px !important;
+                top: 0px !important;
+            }
+            
+        </style>
+
+        <div class="drag">Drag and Drop anything </div>
+       
+        <script type="text/javascript">
+            // Tell jQuery to include this property
+            jQuery.event.props.push('dataTransfer');
+
+            var node = $('.drag');
+
+
+            // HTML5 - allows dragging out of the frame
+            $(node).attr("draggable", "true")
+            .addClass("ui-draggable")
+            .on("dragstart", function (event) {
+                console.log("Native Dragstart! ", event);
+                drag_dataTransfer = event.dataTransfer;
+            })
+            .on("dragend", function (evt) {
+                console.log("native end", evt);
+                console.log("Drag data: ", evt.dataTransfer);
+                console.log("Stored data: ", drag_dataTransfer)
+            });
+
+            // Comment this out to let HTML5 work, but droppable doesn't
+            $(node).draggable({
+                "distance": 20,
+                "cursor": "move",
+                "opacity": 0.7,
+                "stack": ".drag"
+            });
+
+            // Drop
+            $('#drop').droppable({
+                activeClass: "ui-state-highlight"
+            });    
+        </script>
+    </body>
+</html>
